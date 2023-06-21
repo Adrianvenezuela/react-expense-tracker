@@ -22,14 +22,22 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  return (
-    <Context.Provider
-      value={{
-        transactions: state.transactions,
-        addTransaction,
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  const deleteTransaction = (id) => {
+    dispatch({
+      type: "DELETE_TRANSACTION",
+      payload: id,
+    });
+
+    return (
+      <Context.Provider
+        value={{
+          transactions: state.transactions,
+          addTransaction,
+          deleteTransaction,
+        }}
+      >
+        {children}
+      </Context.Provider>
+    );
+  };
 };
