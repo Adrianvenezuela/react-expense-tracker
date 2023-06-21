@@ -1,6 +1,6 @@
 import { useGlobalState } from "../../context/GlobalState";
 
-function Transactionlist() {
+export default function Transactionlist() {
   const { transactions, deleteTransaction } = useGlobalState();
 
   return (
