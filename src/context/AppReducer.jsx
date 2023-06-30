@@ -5,7 +5,7 @@ export default (state, action) => {
         ...state,
         transactions: [...state.transactions, action.payload],
       };
-    case "DELETE_TRANSACTON":
+    case "DELETE_TRANSACTION":
       return {
         ...state,
         transactions: state.transactions.filter(
