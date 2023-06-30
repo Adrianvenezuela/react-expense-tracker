@@ -1,5 +1,5 @@
-import { VictoryPie, VictoryLabel } from "victory";
-import { useGlobalState } from "../context/GlobalState";
+import { VictoryPie, VictoryLabel } from 'victory';
+import { useGlobalState } from '../context/GlobalState';
 
 function ExpenseChart() {
   const { transactions } = useGlobalState();
@@ -8,25 +8,25 @@ function ExpenseChart() {
     .filter((transaction) => transaction.amount > 0)
     .reduce((acc, transaction) => (acc += transaction.amount), 0);
 
-  const totalExpenses =
-    transactions
-      .filter((transaction) => transaction.amount < 0)
-      .reduce((acc, transaction) => (acc += transaction.amount), 0) * -1;
+  const totalExpenses = transactions
+    .filter((transaction) => transaction.amount < 0)
+    .reduce((acc, transaction) => (acc += transaction.amount), 0);
 
   const totalExpensesPercentage = Math.round(
-    (totalExpenses / totalIncome) * 100
+    ((totalExpenses * -1) / totalIncome) * 100
   );
   const totalIncomePercentage = 100 - totalExpensesPercentage;
 
-  console.log(totalExpensesPercentage);
-  console.log(totalIncomePercentage);
+  if (!transactions.length) {
+    return 
+  }
 
   return (
     <VictoryPie
-      colorScale={["#e74c3c", "#2ecc71"]}
+      colorScale={['#e74c3c', '#2ecc71']}
       data={[
-        { x: "Expenses", y: totalExpensesPercentage },
-        { x: "Incomes", y: totalIncomePercentage },
+        { x: 'Expenses', y: totalExpensesPercentage },
+        { x: 'Incomes', y: totalIncomePercentage },
       ]}
       animate={{
         duration: 200,
@@ -36,7 +36,7 @@ function ExpenseChart() {
         <VictoryLabel
           angle={45}
           style={{
-            fill: "white",
+            fill: 'white',
           }}
         />
       }
